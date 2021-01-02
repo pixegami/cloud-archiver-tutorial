@@ -24,13 +24,13 @@ def days_stale(path: str):
 
 
 def _days_stale_of_folder(folder_path: str):
-    latest_days = None
+    min_stale_days = None
     for file in _all_files_in_dir(folder_path):
         days = _days_stale_of_file(file)
-        if latest_days is None or days < latest_days:
-            latest_days = days
+        if min_stale_days is None or days < min_stale_days:
+            min_stale_days = days
 
-    return latest_days if latest_days is not None else 0
+    return min_stale_days if min_stale_days is not None else 0
 
 
 def _days_stale_of_file(file_path: str):
